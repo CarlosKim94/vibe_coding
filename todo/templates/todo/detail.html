@@ -1,0 +1,11 @@
+{% extends "todo/base.html" %}
+{% block content %}
+<h2 class="{% if todo.resolved %}resolved{% endif %}">{{ todo.title }}</h2>
+<p>{{ todo.description|linebreaks }}</p>
+<p>Due: {{ todo.due_date|default:"—" }}</p>
+<p>
+  <a href="{% url 'todo_edit' todo.pk %}">Edit</a> |
+  <a href="{% url 'todo_delete' todo.pk %}">Delete</a> |
+  <a href="{% url 'todo_toggle' todo.pk %}">{% if todo.resolved %}Unresolve{% else %}Resolve{% endif %}</a>
+</p>
+{% endblock %}
